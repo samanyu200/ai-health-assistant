@@ -1,0 +1,36 @@
+ai-health-assistant/
+│
+├── README.md
+├── LICENSE
+├── install.sh                    ← One-line install script (bash)
+│
+├── api/                          ← Modular API system
+│   ├── __init__.py
+│   ├── auth_api.py               ← Register/Login logic
+│   ├── food_scan_api.py          ← Image & barcode reader
+│   ├── health_advice_api.py      ← AI health Q&A + tips
+│   ├── alerts_api.py             ← Future condition alerts
+│   └── planner_api.py            ← Personalized diet planner
+│
+├── backend/
+│   ├── app.py                    ← FastAPI main app
+│   ├── config.py                 ← ENV/DB/API keys config
+│   └── requirements.txt
+│
+├── frontend/
+│   ├── index.html                ← Home
+│   ├── login.html                ← User login
+│   ├── register.html             ← User registration
+│   ├── dashboard.html            ← Food scan, alerts, planner
+│   ├── health_status.js          ← Tracks user stats/graph
+│   └── style.css                 ← Clean modern design
+│
+├── static/                       ← Assets (icons, images)
+│
+├── templates/                    ← If using Jinja/FastAPI templating
+│
+├── data/
+│   ├── food_data.json            ← Food info + calories etc.
+│   └── user_health_records/     ← Per-user tracking JSON/db
+│
+└── docs/                         ← Project documentation
