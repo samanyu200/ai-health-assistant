@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login — AI Health Assistant</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.3/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+  <div class="min-h-screen flex items-center justify-center">
+    <form id="loginForm" class="bg-white p-8 rounded-xl shadow-md w-full max-w-md">
+      <h2 class="text-2xl font-semibold mb-6 text-gray-800">Welcome back</h2>
+      <input type="text" name="username" placeholder="Username" required
+             class="w-full p-3 mb-4 border rounded-md focus:outline-none focus:ring-2">
+      <input type="password" name="password" placeholder="Password" required
+             class="w-full p-3 mb-6 border rounded-md focus:outline-none focus:ring-2">
+      <button type="submit"
+              class="w-full bg-green-600 text-white p-3 rounded-md font-semibold hover:bg-green-700">
+        Log In
+      </button>
+      <p class="mt-4 text-center text-gray-600">
+        New user?
+        <a href="register.html" class="text-blue-500 hover:underline">Register here</a>
+      </p>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        body: fd
+      });
+      const data = await res.json();
+      if (res.ok && data.access_token) {
+        localStorage.setItem("token", data.access_token);
+        window.location = "dashboard.html";
+      } else alert(data.detail || data.message);
+    });
+  </script>
+</body>
+</html>
